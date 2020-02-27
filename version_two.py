@@ -15,20 +15,16 @@ class AnagramKey:
         @cache_disk()
         def generate_primes():
             return {n - 1: sympy.prime(n) for n in range(1, 256)}
-
         return generate_primes()
 
-    maxl = 0
-
     def __init__(self, word):
-        print("init:", AnagramKey.maxl)
         bytes_word = word.encode()
         char_primes = self.get_primes()
         primes = [char_primes[byte] for byte in bytes_word]
-        self.word_hash = reduce(lambda x, y: x * y, primes)
+        self.word_hash = reduce(lambda x, y: x * y, primes) if primes else 0
 
-        AnagramKey.maxl = max(sys.getsizeof(self.word_hash), AnagramKey.maxl)
-        print("Max:", AnagramKey.maxl)
+    def __hash__(self):
+        return self.word_hash
 
     def __eq__(self, other):
         return self.word_hash == other.word_hash
@@ -40,7 +36,7 @@ def load_dict(dict_path):
     with open(dict_path, "r") as file:
 
         for word in file.readlines():
-            word = word.rstrip("\n")
+            word = word.rstrip("\n").lower()
             dict_anagrams[AnagramKey(word)].append(word)
 
     return dict_anagrams
@@ -48,7 +44,7 @@ def load_dict(dict_path):
 
 @show_time
 def find_anagram(dict_anagrams, word):
-    return dict_anagrams.get(AnagramKey(word))
+    return dict_anagrams.get(AnagramKey(word.lower()))
 
 
 if __name__ == '__main__':
@@ -58,8 +54,8 @@ if __name__ == '__main__':
 
     print("Wait loading dictionary")
     dict_anagrams = load_dict(args.dict_path)
-    print("Dictionary loaded!")
 
+    print("You can now enter a word:")
     word = None
     while word != 'exit':
         word = input()
@@ -72,13 +68,26 @@ if __name__ == '__main__':
 
 
 
-
-
-
-
-
-
-
+# angor 10
+# elaps 10
+# armet 9
+# asteer 9
+# caret 9
+# ester 9
+# ante 8
+# arist 8
+# laster 8
+# leapt 8
+# abel 7
+# acinar 7
+# acrolein 7
+# agnel 7
+# albeit 7
+# aldern 7
+# alem 7
+# alert 7
+# alien 7
+# argel 7
 
 
 
