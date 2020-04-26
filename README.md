@@ -19,7 +19,7 @@ Show what the library does as concisely as possible, developers should be able t
 Uses python 3 and install the requirements.txt file
 
 ## How to use?
-python version_XXX.py
+Run: ```python version_XXX.py```
 
 ## Contribute
 
