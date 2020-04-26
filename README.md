@@ -7,7 +7,7 @@ Build status of continus integration i.e. travis, appveyor etc. Ex. -
 ## Code style
 This code uses python PEP 8 Code Style
 
-[![python-standard-style]}(https://www.python.org/dev/peps/pep-0008)
+[![python-standard-style]](https://www.python.org/dev/peps/pep-0008)
  
 ## Features
 Eficiently find anagrams against a dictionary
